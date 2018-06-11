@@ -1,0 +1,37 @@
+{% extends "index.html.twig" %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="panel-group">
+                <div class="col-md-3 panelspace"
+                     v-for="(column) of columns"
+                     :key="column.type">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <span class="badge" v-html="getColumnTasksCount(column)"></span>
+                            &nbsp;
+                            <span v-html="column.name"></span>
+                        </div>
+                        <ul class="list-group">
+                            <li class="list-group-item"
+                                v-for="(task) of getColumnTasks(column)"
+                                :key="task.task_id">
+                                <p>
+                                    <a href="#"
+                                       v-html="task.title"
+                                       @click="clickOnTask(task)">
+                                    </a>
+                                </p>
+                                <p v-html="task.details"></p>
+                                <p class="small text-right" v-html="formatDate(task.creation_date)"></p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include "tasks/add.twig" %}
+    {% include "tasks/edit.twig" %}
+{% endblock %}

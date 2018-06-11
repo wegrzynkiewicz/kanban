@@ -1,0 +1,60 @@
+<!-- Modal -->
+<form action="#" method="post" autocomplete="off">
+    <div class="modal fade"
+         id="task_add_modal"
+         tabindex="-1"
+         role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button"
+                            class="close"
+                            data-dismiss="modal">
+                    </button>
+                    <h4 class="modal-title" id="task_add_modal_title">
+                        Dodaj nowe zadanie
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="title">Nazwa zadania</label>
+                        <input type="text"
+                               class="form-control"
+                               id="title"
+                               name="title"
+                               v-model="newTask.title"
+                               required>
+                    </div>
+                    <div class="form-group">
+                        <label for="details">Opis zadania</label>
+                        <textarea class="form-control"
+                                  rows="5"
+                                  id="details"
+                                  v-model="newTask.details"
+                                  name="details"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="status">Status:</label>
+                        <select class="form-control"
+                                id="type"
+                                name="type"
+                                v-model="newTask.type">
+                            <option
+                                    v-for="column in columns"
+                                    :value="column.type"
+                                    v-html="column.name"></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button @click="addNewTask()"
+                            role="button"
+                            type="button"
+                            class="btn btn-success">
+                        Dodaj nowe zadanie
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
